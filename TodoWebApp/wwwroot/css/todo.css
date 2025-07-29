@@ -1,0 +1,83 @@
+﻿.todo-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    .todo-container h1 {
+        text-align: center;
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+.pending-count {
+    font-size: 16px;
+    color: #ff5722;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    background: #f7f7f7;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+    .todo-item:hover {
+        background: #eaeaea;
+    }
+
+    .todo-item.done .todo-title {
+        text-decoration: line-through;
+        color: #888;
+    }
+
+.todo-title {
+    flex: 1;
+    margin-left: 10px;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+}
+
+.add-section {
+    display: flex;
+    gap: 10px;
+}
+
+.add-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.btn-add {
+    padding: 10px 15px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+    .btn-add:hover {
+        background: #45a049;
+    }

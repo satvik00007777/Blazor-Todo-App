@@ -1,0 +1,28 @@
+﻿@page "/todo"
+@rendermode InteractiveServer
+
+@* @using Microsoft.AspNetCore.Components.QuickGrid *@
+@using TodoWebApp.Models
+
+<link href="css/todo.css" rel="stylesheet" />
+
+<PageTitle>Todo</PageTitle>
+
+<div class="todo-container">
+    <h1>Todo List <span class="pending-count">(@todos.Count(t => !t.IsDone)) pending</span></h1>
+
+    <ul class="todo-list">
+        @foreach (var todo in todos)
+        {
+            <li class="todo-item @(todo.IsDone ? "done" : "")">
+                <input type="checkbox" @bind="todo.IsDone" />
+                <input class="todo-title" @bind="todo.Title" />
+            </li>
+        }
+    </ul>
+
+    <div class="add-section">
+        <input class="add-input" placeholder="Add a Todo..." @bind="newTodoItem" />
+        <button class="btn-add" @onclick="AddTodoItem">Add</button>
+    </div>
+</div>
