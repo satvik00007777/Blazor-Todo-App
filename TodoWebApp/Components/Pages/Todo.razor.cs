@@ -1,6 +1,5 @@
 ﻿using TodoWebApp.Models;
 using System.Collections.Generic;
-//using Microsoft.AspNetCore.Components.QuickGrid
 
 namespace TodoWebApp.Components.Pages
 {
@@ -8,7 +7,6 @@ namespace TodoWebApp.Components.Pages
     {
         private List<TodoModel> todos = [];
         private string newTodoItem = "";
-        //private PaginationState pagination = new() { ItemsPerPage = 10 };
 
         private void AddTodoItem()
         {
