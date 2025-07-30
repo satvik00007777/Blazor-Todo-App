@@ -15,5 +15,6 @@ namespace TodoWebApp.Data
         }
 
         public DbSet<TodoWebApp.Models.MovieModel> MovieModel { get; set; } = default!;
+        public DbSet<User> Users { get; set; }
     }
 }
