@@ -1,0 +1,39 @@
+﻿@page "/moviemodels"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using TodoWebApp.Models
+@using TodoWebApp.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<TodoWebApp.Data.MovieAppContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="moviemodels/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.MovieModel">
+    <PropertyColumn Property="moviemodel => moviemodel.Title" />
+    <PropertyColumn Property="moviemodel => moviemodel.ReleaseDate" />
+    <PropertyColumn Property="moviemodel => moviemodel.Genre" />
+    <PropertyColumn Property="moviemodel => moviemodel.Price" />
+
+    <TemplateColumn Context="moviemodel">
+        <a href="@($"moviemodels/edit?id={moviemodel.Id}")">Edit</a> |
+        <a href="@($"moviemodels/details?id={moviemodel.Id}")">Details</a> |
+        <a href="@($"moviemodels/delete?id={moviemodel.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private MovieAppContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

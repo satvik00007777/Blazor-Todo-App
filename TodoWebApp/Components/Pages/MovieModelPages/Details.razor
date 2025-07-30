@@ -1,0 +1,52 @@
+﻿@page "/moviemodels/details"
+@using Microsoft.EntityFrameworkCore
+@using TodoWebApp.Models
+@inject IDbContextFactory<TodoWebApp.Data.MovieAppContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>MovieModel</h2>
+    <hr />
+    @if (moviemodel is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Title</dt>
+            <dd class="col-sm-10">@moviemodel.Title</dd>
+            <dt class="col-sm-2">ReleaseDate</dt>
+            <dd class="col-sm-10">@moviemodel.ReleaseDate</dd>
+            <dt class="col-sm-2">Genre</dt>
+            <dd class="col-sm-10">@moviemodel.Genre</dd>
+            <dt class="col-sm-2">Price</dt>
+            <dd class="col-sm-10">@moviemodel.Price</dd>
+        </dl>
+        <div>
+            <a href="@($"/moviemodels/edit?id={moviemodel.Id}")">Edit</a> |
+            <a href="@($"/moviemodels")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private MovieModel? moviemodel;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        moviemodel = await context.MovieModel.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (moviemodel is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}
