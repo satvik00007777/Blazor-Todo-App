@@ -8,6 +8,11 @@
     <main>
         <div class="top-row px-4">
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+
+            <form method="post" action="logout" class="ms-auto">
+                <AntiforgeryToken />
+                <button type="submit" class="btn btn-sm btn-primary">Logout</button>
+            </form>
         </div>
 
         <article class="content px-4">
