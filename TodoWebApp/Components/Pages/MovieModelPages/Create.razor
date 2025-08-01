@@ -1,6 +1,10 @@
 ﻿@page "/moviemodels/create"
+@attribute [Authorize]
+
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.EntityFrameworkCore
 @using TodoWebApp.Models
+
 @inject IDbContextFactory<TodoWebApp.Data.MovieAppContext> DbFactory
 @inject NavigationManager NavigationManager
 

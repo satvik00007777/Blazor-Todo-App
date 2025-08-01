@@ -1,6 +1,8 @@
 ﻿@page "/todo"
 @rendermode InteractiveServer
+@attribute [Authorize]
 
+@using Microsoft.AspNetCore.Authorization
 @using TodoWebApp.Models
 
 <link href="css/todo.css" rel="stylesheet" />
