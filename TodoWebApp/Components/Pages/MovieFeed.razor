@@ -1,0 +1,42 @@
+﻿@using TodoWebApp.Models
+@using TodoWebApp.Services
+@inject TMDbService TMDbService
+
+<div class="movie-feed">
+    @if (movies == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var movie in movies)
+            {
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <img src="@movie.PosterUrl" class="card-img-top" alt="@movie.Title">
+                        <div class="card-body">
+                            <h5 class="card-title">@movie.Title</h5>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Released: @movie.ReleaseDate</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<TMDbMovie>? movies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var tmdbResponse = await TMDbService.GetPopularMoviesAsync();
+        if (tmdbResponse != null)
+        {
+            movies = tmdbResponse.Results;
+        }
+    }
+}

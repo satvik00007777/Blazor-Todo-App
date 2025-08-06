@@ -72,6 +72,25 @@ builder.Services.AddHttpClient("API", client =>
     };
 });
 
+// 🔹 HttpClient configured to allow cookies
+builder.Services.AddHttpClient("API", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7082/");
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    return new HttpClientHandler
+    {
+        UseCookies = true
+    };
+});
+
+// 🔹 TMDb Service
+builder.Services.AddHttpClient<TMDbService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.themoviedb.org/3/");
+});
+
+
 // 🔹 Controllers & Blazor
 builder.Services.AddControllers();
 builder.Services.AddRazorComponents()
